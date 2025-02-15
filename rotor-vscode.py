@@ -1,3 +1,4 @@
+import os
 import pygame
 
 
@@ -9,9 +10,6 @@ def rot_center(image, rect, angle):
     new_image = pygame.transform.rotate(image, angle)
     rect = new_image.get_rect(center=rect.center)
     return new_image, rect
-
-path = "res/toddhoward-smile.jpg"
-size = (200, 200)
 
 
 class Card:
@@ -71,8 +69,9 @@ width, height = 800, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("What")
 
-todd = Card("res/rotating-background.png", (500, 365), width // 2 - 750, height // 2 - 500, 1)
-todds = DoubleCard("res/rotating-background-2.png", (333, 243), -100, -100, 2, -2, -2, width, height)
+dir = os.path.dirname(os.path.abspath(__file__))
+card = Card(dir + "/res/rotating-background.png", (500, 365), width // 2 - 750, height // 2 - 500, 1)
+cards = DoubleCard(dir + "/res/rotating-background-2.png", (333, 243), -100, -100, 2, -2, -2, width, height)
 
 # todo
 
@@ -87,8 +86,8 @@ while running:
     # todo
 
     screen.fill((0, 0, 0))
-    todd.update()
-    todds.update()
+    card.update()
+    cards.update()
 
     pygame.display.flip()
     pygame.time.Clock().tick(60)

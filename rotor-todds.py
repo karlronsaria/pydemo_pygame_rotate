@@ -1,3 +1,4 @@
+import os
 import pygame
 
 
@@ -10,8 +11,10 @@ def rot_center(image, rect, angle):
     rect = new_image.get_rect(center=rect.center)
     return new_image, rect
 
-path = "res/toddhoward-smile.jpg"
+dir = os.path.dirname(os.path.abspath(__file__))
+path = dir + "/res/toddhoward-smile.jpg"
 size = (200, 200)
+
 
 class Todd:
     def __init__(self, path, size, x, y, angle_update):
@@ -70,7 +73,7 @@ width, height = 500, 500
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Todds")
 
-todd = Todd("res/toddhoward-nod.jpeg", (1200, 900), width // 2 - 600, height // 2 - 450, 2)
+todd = Todd(dir + "/res/toddhoward-nod.jpeg", (1200, 900), width // 2 - 600, height // 2 - 450, 2)
 todds = DoubleTodd(path, size, -100, -100, 7, -2, -2, width, height)
 
 # todo
